@@ -1,0 +1,469 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .page {
+    background: #111;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    border: 10px solid #FFD600;
+    outline: 4px solid #D62828;
+    min-height: 100vh;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .hero {
+    background: #111;
+    border-bottom: 6px solid #FFD600;
+    padding: 3rem 2.5rem 2.5rem;
+    position: relative;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 8px;
+    background: repeating-linear-gradient(90deg, #D62828 0px, #D62828 40px, #FFD600 40px, #FFD600 80px);
+  }
+
+  .eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #FFD600;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+  }
+
+  .hero-name {
+    font-family: 'Bebas Neue', cursive;
+    font-size: clamp(3.5rem, 10vw, 7rem);
+    color: #fff;
+    line-height: 0.9;
+    letter-spacing: 2px;
+  }
+
+  .hero-name span {
+    color: #FFD600;
+    display: block;
+  }
+
+  .hero-tagline {
+    font-family: 'Space Mono', monospace;
+    font-size: 1rem;
+    color: #aaa;
+    margin-top: 1.5rem;
+    border-left: 4px solid #D62828;
+    padding-left: 1rem;
+    max-width: 520px;
+    line-height: 1.6;
+  }
+
+  .hero-tagline em {
+    color: #FFD600;
+    font-style: normal;
+    font-weight: 700;
+  }
+
+  .hero-meta {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .badge {
+    background: #D62828;
+    color: #fff;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border: 2px solid #D62828;
+  }
+
+  .badge.outline {
+    background: transparent;
+    border-color: #FFD600;
+    color: #FFD600;
+  }
+
+  .stat-bar {
+    background: #1a1a1a;
+    border-top: 4px solid #D62828;
+    border-bottom: 4px solid #D62828;
+    padding: 1.5rem 2.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 2.8rem;
+    color: #FFD600;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: #888;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  .section {
+    padding: 2.5rem 2.5rem;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.8rem;
+    color: #D62828;
+    letter-spacing: 3px;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: #FFD600;
+  }
+
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .job {
+    border-left: 4px solid #FFD600;
+    padding: 1rem 1.5rem;
+    position: relative;
+    background: #161616;
+    margin-bottom: 6px;
+    transition: background 0.2s;
+  }
+
+  .job:hover {
+    background: #1e1e1e;
+  }
+
+  .job::before {
+    content: '';
+    position: absolute;
+    left: -10px;
+    top: 1.2rem;
+    width: 14px;
+    height: 14px;
+    background: #D62828;
+    border: 3px solid #FFD600;
+    border-radius: 50%;
+  }
+
+  .job-company {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: #FFD600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .job-title {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #fff;
+    margin: 4px 0 2px;
+  }
+
+  .job-period {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: #888;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 8px;
+  }
+
+  .skill-pill {
+    background: #1a1a1a;
+    border: 1.5px solid #333;
+    padding: 8px 12px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: #ccc;
+    text-align: center;
+    cursor: default;
+    transition: all 0.15s;
+  }
+
+  .skill-pill:hover {
+    border-color: #FFD600;
+    color: #FFD600;
+    background: #1f1f00;
+  }
+
+  .skill-pill.red:hover {
+    border-color: #D62828;
+    color: #D62828;
+    background: #1f0000;
+  }
+
+  .domains {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+  }
+
+  .domain-card {
+    background: #1a1a1a;
+    border: 2px solid #222;
+    padding: 1.25rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .domain-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px;
+    height: 100%;
+    background: #D62828;
+  }
+
+  .domain-card.yellow::before {
+    background: #FFD600;
+  }
+
+  .domain-icon {
+    font-size: 22px;
+    margin-bottom: 8px;
+    color: #FFD600;
+  }
+
+  .domain-card.yellow .domain-icon {
+    color: #D62828;
+  }
+
+  .domain-name {
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: #fff;
+  }
+
+  .domain-desc {
+    font-size: 0.75rem;
+    color: #888;
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+
+  .contact-bar {
+    background: #FFD600;
+    padding: 2rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    border-top: 6px solid #D62828;
+  }
+
+  .contact-heading {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 2rem;
+    color: #111;
+    letter-spacing: 2px;
+  }
+
+  .contact-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .contact-link {
+    background: #111;
+    color: #FFD600;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    padding: 10px 18px;
+    text-decoration: none;
+    border: 2px solid #111;
+    font-weight: 700;
+    transition: all 0.15s;
+  }
+
+  .contact-link:hover {
+    background: #D62828;
+    border-color: #D62828;
+  }
+
+  .divider {
+    height: 6px;
+    background: repeating-linear-gradient(90deg, #D62828 0px, #D62828 30px, #111 30px, #111 35px, #FFD600 35px, #FFD600 65px, #111 65px, #111 70px);
+  }
+</style>
+
+<div class="page">
+
+  <div class="hero">
+    <div class="eyebrow">Portfolio · Technical Writer · 13+ Years</div>
+    <div class="hero-name">Uday Kumar<span>Dubey</span></div>
+    <div class="hero-tagline">
+      Turning <em>complex systems</em> into clear words —<br>
+      from Kubernetes clusters to cloud APIs, from SaaS to semiconductors.
+    </div>
+    <div class="hero-meta">
+      <span class="badge">Senior Technical Writer</span>
+      <span class="badge outline">MadCap Flare</span>
+      <span class="badge outline">DITA</span>
+      <span class="badge outline">DevOps Docs</span>
+    </div>
+  </div>
+
+  <div class="stat-bar">
+    <div class="stat"><div class="stat-num">13+</div><div class="stat-label">Years Experience</div></div>
+    <div class="stat"><div class="stat-num">8+</div><div class="stat-label">Companies</div></div>
+    <div class="stat"><div class="stat-num">6</div><div class="stat-label">Domains</div></div>
+    <div class="stat"><div class="stat-num">20+</div><div class="stat-label">Tools Mastered</div></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section">
+    <div class="section-title">Domain Expertise</div>
+    <div class="domains">
+      <div class="domain-card">
+        <div class="domain-icon"><i class="ti ti-cloud" aria-hidden="true"></i></div>
+        <div class="domain-name">Cloud & DevOps</div>
+        <div class="domain-desc">Docker, Kubernetes, AWS, microservices, CI/CD pipelines</div>
+      </div>
+      <div class="domain-card yellow">
+        <div class="domain-icon"><i class="ti ti-brand-open-source" aria-hidden="true"></i></div>
+        <div class="domain-name">SaaS Products</div>
+        <div class="domain-desc">User guides, help centers, release notes, onboarding flows</div>
+      </div>
+      <div class="domain-card">
+        <div class="domain-icon"><i class="ti ti-terminal-2" aria-hidden="true"></i></div>
+        <div class="domain-name">API Documentation</div>
+        <div class="domain-desc">RESTful APIs, auth flows, endpoints, error handling</div>
+      </div>
+      <div class="domain-card yellow">
+        <div class="domain-icon"><i class="ti ti-cpu" aria-hidden="true"></i></div>
+        <div class="domain-name">Hardware & Networking</div>
+        <div class="domain-desc">Electrical, turbine, chromatography, telematics systems</div>
+      </div>
+      <div class="domain-card">
+        <div class="domain-icon"><i class="ti ti-writing" aria-hidden="true"></i></div>
+        <div class="domain-name">Structured Authoring</div>
+        <div class="domain-desc">DITA, Oxygen XML, MadCap Flare, S1000D, Schema ST4</div>
+      </div>
+      <div class="domain-card yellow">
+        <div class="domain-icon"><i class="ti ti-chart-bar" aria-hidden="true"></i></div>
+        <div class="domain-name">Content Strategy</div>
+        <div class="domain-desc">SEO, knowledge bases, blogs, product marketing content</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section">
+    <div class="section-title">Career Timeline</div>
+    <div class="timeline">
+      <div class="job">
+        <div class="job-company">Encora Innovations</div>
+        <div class="job-title">Senior Technical Writer — MariaDB Database Platform</div>
+        <div class="job-period">Oct 2025 – Present</div>
+      </div>
+      <div class="job">
+        <div class="job-company">Infracloud Technologies</div>
+        <div class="job-title">Technical Writer — Kubernetes & Storage Documentation</div>
+        <div class="job-period">Mar 2023 – July 2025</div>
+      </div>
+      <div class="job">
+        <div class="job-company">Bahwan Cybertek</div>
+        <div class="job-title">Technical Writer — Dropthought & NetMRI</div>
+        <div class="job-period">Dec 2021 – Feb 2023</div>
+      </div>
+      <div class="job">
+        <div class="job-company">Cropin Technology Solutions</div>
+        <div class="job-title">Technical Writer — AgriTech SaaS Suite</div>
+        <div class="job-period">Feb 2020 – Nov 2021</div>
+      </div>
+      <div class="job">
+        <div class="job-company">HCL Technologies</div>
+        <div class="job-title">Technical Writer — BigFix & eCM Portal</div>
+        <div class="job-period">June 2019 – Feb 2020</div>
+      </div>
+      <div class="job">
+        <div class="job-company">Innovatia / L&T Technology / IBM India</div>
+        <div class="job-title">Technical Writer — Telematics, Automation & Enterprise</div>
+        <div class="job-period">2013 – 2019</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section">
+    <div class="section-title">Core Toolset</div>
+    <div class="skills-grid">
+      <div class="skill-pill">MadCap Flare</div>
+      <div class="skill-pill">Oxygen XML</div>
+      <div class="skill-pill red">DITA</div>
+      <div class="skill-pill">Confluence</div>
+      <div class="skill-pill">GitHub</div>
+      <div class="skill-pill red">Docusaurus</div>
+      <div class="skill-pill">Sphinx</div>
+      <div class="skill-pill">ClickHelp</div>
+      <div class="skill-pill red">IXIASOFT</div>
+      <div class="skill-pill">Schema ST4</div>
+      <div class="skill-pill">SharePoint</div>
+      <div class="skill-pill red">JIRA</div>
+      <div class="skill-pill">AWS</div>
+      <div class="skill-pill">Kubernetes</div>
+      <div class="skill-pill red">Docker</div>
+      <div class="skill-pill">FreshDesk</div>
+      <div class="skill-pill">SnagIt</div>
+      <div class="skill-pill red">Adobe Acrobat</div>
+    </div>
+  </div>
+
+  <div class="contact-bar">
+    <div>
+      <div style="font-family:'Space Mono',monospace;font-size:10px;color:#333;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;">Ready to collaborate</div>
+      <div class="contact-heading">Let's Build Something Clear.</div>
+    </div>
+    <div class="contact-links">
+      <a class="contact-link" href="mailto:sam.dubey01@gmail.com"><i class="ti ti-mail" style="margin-right:6px" aria-hidden="true"></i>Email</a>
+      <a class="contact-link" href="https://www.linkedin.com/in/uday-dubey-5887653a"><i class="ti ti-brand-linkedin" style="margin-right:6px" aria-hidden="true"></i>LinkedIn</a>
+      <a class="contact-link" href="https://github.com/uday3927"><i class="ti ti-brand-github" style="margin-right:6px" aria-hidden="true"></i>GitHub</a>
+    </div>
+  </div>
+
+</div>
